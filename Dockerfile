@@ -1,20 +1,19 @@
 # Use an official Node.js runtime as a parent image
-FROM node:16
+FROM node:18-alpine
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy package.json and install dependencies
+# Install dependencies
 COPY package*.json ./
+
 RUN npm install
-RUN npm install express express-handlebars
 
-
-# Copy the rest of the application files
+# Copy the rest of the application (optional if you are using volumes)
 COPY . .
 
-# Expose the port that your app runs on
+# Expose the port the app runs on
 EXPOSE 3000
 
-# Start the app
-CMD ["node", "app.js"]
+# Start the app with nodemon for development
+CMD ["npm", "run", "dev"]

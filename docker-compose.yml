@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    image: node-docker-app
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app   # Mount the current directory to the container
+    command: npm run dev  # Run the app with nodemon
